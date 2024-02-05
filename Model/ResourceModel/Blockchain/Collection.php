@@ -1,0 +1,27 @@
+<?php
+/*
+ * Copyright © Ihor Oleksiienko (https://github.com/torys877)
+ * See LICENSE for license details.
+ */
+
+namespace Crypto\CryptoCurrency\Model\ResourceModel\Blockchain;
+
+use Crypto\CryptoCurrency\Model\Data\Blockchain as Model;
+use Crypto\CryptoCurrency\Model\ResourceModel\Blockchain as ResourceModel;
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
+
+class Collection extends AbstractCollection
+{
+    /**
+     * @var string
+     */
+    protected $_eventPrefix = 'crypto_blockchain_networks_collection';
+
+    /**
+     * Initialize collection model.
+     */
+    protected function _construct()
+    {
+        $this->_init(Model::class, ResourceModel::class);
+    }
+}

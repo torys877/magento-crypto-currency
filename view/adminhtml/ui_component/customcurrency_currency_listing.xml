@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="customcurrency_currency_columns">
+        <column name="crypto_code" sortOrder="21">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                            <item name="max_text_length" xsi:type="number">12</item>
+                        </item>
+                    </item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Crypto Code</item>
+                </item>
+            </argument>
+        </column>
+
+        <column name="is_crypto" sortOrder="80" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <label translate="true">Is Cryptocurrency?</label>
+                <sorting>asc</sorting>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+            </settings>
+        </column>
+
+        <column name="is_token" sortOrder="90" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <label translate="true">Is Token?</label>
+                <sorting>asc</sorting>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+            </settings>
+        </column>
+    </columns>
+</listing>

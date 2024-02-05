@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Ihor Oleksiienko (https://github.com/torys877)
+ * See LICENSE for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">currencyaddress_form.currencyaddress_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Crypto\CryptoCurrency\Ui\Form\Button\Currencyaddress\Save"/>
+            <button name="delete" class="Crypto\CryptoCurrency\Ui\Form\Button\Delete"/>
+            <button name="back">
+                <label translate="true">Back</label>
+                <class>back</class>
+                <url path="*/*"/>
+            </button>
+        </buttons>
+        <namespace>currencyaddress_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>currencyaddress_form.currencyaddress_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="currencyaddress_form_data_source" component="Magento_Ui/js/form/provider">
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="Crypto\CryptoCurrency\Ui\Component\Form\CurrencyAddressDataProvider"
+                      name="currencyaddress_form_data_source">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general" sortOrder="5">
+        <settings>
+            <label/>
+            <dataScope>general</dataScope>
+        </settings>
+        <field name="blockchain_network_id" formElement="select" sortOrder="10">
+            <settings>
+                <label translate="true">Blockchain Network</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Crypto\CryptoCurrency\Model\Source\Blockchain"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="currency_id" formElement="select" sortOrder="20">
+            <settings>
+                <label translate="true">Currency</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Crypto\CryptoCurrency\Model\Source\CryptoCurrency"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="merchant_address" formElement="input" sortOrder="30">
+            <settings>
+                <label translate="true">Merchant Address In Blockchain</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="token_address" formElement="input" sortOrder="40">
+            <settings>
+                <label translate="true">Currency Token Address In Blockchain</label>
+            </settings>
+        </field>
+    </fieldset>
+</form>

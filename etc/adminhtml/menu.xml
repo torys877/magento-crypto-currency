@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © Ihor Oleksiienko (https://github.com/torys877)
+  ~ See LICENSE for license details.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Crypto_CryptoCurrency::blockchain"
+             title="Blockchain Networks"
+             module="Crypto_CryptoCurrency"
+             sortOrder="10"
+             parent="Crypto_Currency::crypto"
+             action="cryptocurrency/blockchain/index"
+             resource="Crypto_CryptoCurrency::blockchain"/>
+
+        <add id="Crypto_CryptoCurrency::currency_address"
+             title="Currency Addresses"
+             module="Crypto_CryptoCurrency"
+             sortOrder="10"
+             parent="Crypto_Currency::crypto"
+             action="cryptocurrency/currencyaddress/index"
+             resource="Crypto_CryptoCurrency::currency_address"/>
+    </menu>
+</config>

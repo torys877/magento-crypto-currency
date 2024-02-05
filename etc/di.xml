@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © Ihor Oleksiienko (https://github.com/torys877)
+  ~ See LICENSE for license details.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Crypto\CryptoCurrency\Api\Data\CryptoCurrencyInterface"
+                type="Crypto\CryptoCurrency\Model\Data\CryptoCurrency"/>
+
+    <preference for="Crypto\CryptoCurrency\Api\Data\BlockchainInterface"
+                type="Crypto\CryptoCurrency\Model\Data\Blockchain"/>
+    <preference for="Crypto\CryptoCurrency\Api\Data\CurrencyAddressInterface"
+                type="Crypto\CryptoCurrency\Model\Data\CurrencyAddress"/>
+
+    <preference for="Crypto\CryptoCurrency\Api\BlockchainRepositoryInterface"
+                type="Crypto\CryptoCurrency\Model\BlockchainRepository"/>
+
+    <preference for="Crypto\CryptoCurrency\Api\CurrencyAddressRepositoryInterface"
+                type="Crypto\CryptoCurrency\Model\CurrencyAddressRepository"/>
+
+    <preference for="Crypto\Currency\Model\Data\Currency"
+                type="Crypto\CryptoCurrency\Model\Data\CryptoCurrency"/>
+
+    <preference for="Crypto\CryptoCurrency\Api\CryptoCurrencyRepositoryInterface"
+                type="Crypto\CryptoCurrency\Model\CryptoCurrencyRepository"/>
+
+
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="blockchain_listing_data_source" xsi:type="string">
+                    Crypto\CryptoCurrency\Model\ResourceModel\Blockchain\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Crypto\CryptoCurrency\Model\ResourceModel\Blockchain\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">crypto_blockchain_networks</argument>
+        </arguments>
+    </virtualType>
+
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="currencyaddress_listing_data_source" xsi:type="string">
+                    Crypto\CryptoCurrency\Model\ResourceModel\CurrencyAddress\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Crypto\CryptoCurrency\Model\ResourceModel\CurrencyAddress\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">crypto_blockchain_currency_address</argument>
+        </arguments>
+    </virtualType>
+
+</config>

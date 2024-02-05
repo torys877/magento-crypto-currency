@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © Ihor Oleksiienko (https://github.com/torys877)
+  ~ See LICENSE for license details.
+  -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="main_fieldset">
+        <field name="crypto_code" formElement="input" sortOrder="11">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string">Code</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">main_fieldset</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="array">true</item>
+                        <item name="max_text_length" xsi:type="number">12</item>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+
+            <settings>
+                <notice translate="true">Code is used for crypto goals, payment, rates, etc. Code allows more than 3 symbols.</notice>
+            </settings>
+        </field>
+
+        <field name="is_crypto" formElement="select" sortOrder="110">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Is Cryptocurrency?</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="is_token" formElement="select" sortOrder="120">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Is Token?</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="contract_abi" formElement="textarea" sortOrder="130">
+            <settings>
+                <label translate="true">Currency Contract ABI?</label>
+            </settings>
+        </field>
+        <field name="contract_abi" formElement="textarea" sortOrder="130">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string">Currency Contract ABI</item>
+                </item>
+            </argument>
+
+            <settings>
+                <notice translate="true">Use contract abi for currency (it usually implements ERC20 interface).</notice>
+            </settings>
+        </field>
+    </fieldset>
+</form>

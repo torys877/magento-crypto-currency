@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Ihor Oleksiienko (https://github.com/torys877)
+ * See LICENSE for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">currencyaddress_listing.currencyaddress_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Currency Address</label>
+            </button>
+        </buttons>
+        <spinner>currencyaddress_columns</spinner>
+        <deps>
+            <dep>currencyaddress_listing.currencyaddress_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="currencyaddress_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">entity_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider"
+                      name="currencyaddress_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="template" xsi:type="string">ui/grid/toolbar</item>
+            </item>
+        </argument>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <paging name="listing_paging"/>
+        <filterSearch name="fulltext">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="provider" xsi:type="string">currencyaddress_listing.customcurrency_currency_listing_data_source</item>
+                    <item name="chipsProvider" xsi:type="string">currencyaddress_listing.currencyaddress_listing.listing_top.listing_filters_chips</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">currencyaddress_listing.currencyaddress_listing.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.search</item>
+                    </item>
+                </item>
+            </argument>
+        </filterSearch>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="columnsProvider" xsi:type="string">currencyaddress_listing.currencyaddress_listing.currencyaddress_columns</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">currencyaddress_listing.currencyaddress_listing.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.filters</item>
+                    </item>
+                    <item name="templates" xsi:type="array">
+                        <item name="filters" xsi:type="array">
+                            <item name="select" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
+                                <item name="template" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                            </item>
+                        </item>
+                    </item>
+                    <item name="childDefaults" xsi:type="array">
+                        <item name="provider" xsi:type="string">currencyaddress_listing.currencyaddress_listing.listing_top.listing_filters</item>
+                        <item name="imports" xsi:type="array">
+                            <item name="visible" xsi:type="string">currencyaddress_listing.currencyaddress_listing.currencyaddress_columns.${ $.index }:visible</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </filters>
+    </listingToolbar>
+    <columns name="currencyaddress_columns">
+        <column name="entity_id" sortOrder="10">
+            <settings>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="blockchain_network_id" sortOrder="20" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <label translate="true">Blockchain Network</label>
+                <sorting>asc</sorting>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <options class="Crypto\CryptoCurrency\Model\Source\Blockchain"/>
+            </settings>
+        </column>
+        <column name="currency_id" sortOrder="30" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <label translate="true">Currency</label>
+                <sorting>asc</sorting>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <options class="Crypto\CryptoCurrency\Model\Source\CryptoCurrency"/>
+            </settings>
+        </column>
+        <column name="token_address" sortOrder="40">
+            <settings>
+                <label translate="true">Currency Address</label>
+                <sorting>asc</sorting>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="merchant_address" sortOrder="50">
+            <settings>
+                <label translate="true">Merchant Address</label>
+                <sorting>asc</sorting>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Crypto\CryptoCurrency\Ui\Component\Listing\Column\CurrencyAddressActions" sortOrder="100"/>
+    </columns>
+</listing>

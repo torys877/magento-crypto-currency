@@ -1,0 +1,33 @@
+{
+    "crypto_blockchain_networks": {
+        "column": {
+            "network_id": true,
+            "code": true,
+            "name": true,
+            "block_explorer_url": true,
+            "is_block_explorer_check": true,
+            "block_explorer_api_url": true,
+            "block_explorer_api_key": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "crypto_blockchain_currency_address": {
+        "column": {
+            "currency_id": true,
+            "network_id": true,
+            "token_address": true,
+            "merchant_address": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "BLOCKCHAIN_CURRENCY_UNIQUE_INDEX": true
+        }
+    },
+    "crypto_custom_currency": {
+        "is_crypto": true,
+        "is_token": true,
+        "contract_abi": true
+    }
+}

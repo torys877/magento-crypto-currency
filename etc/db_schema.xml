@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © Ihor Oleksiienko (https://github.com/torys877)
+  ~ See LICENSE for license details.
+  -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="crypto_blockchain_networks" resource="default" engine="innodb" comment="Blockchain Networks">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"
+                comment="Entity Id"/>
+        <column xsi:type="int" name="network_id" nullable="false" comment="Network Id"/>
+        <column xsi:type="varchar" name="code" length="255" nullable="false" comment="Code"/>
+        <column xsi:type="varchar" name="name" length="255" nullable="false" comment="Network Name"/>
+        <column xsi:type="varchar" name="block_explorer_url" length="255" nullable="true" comment="Block Explorer Url"/> <!-- to output url for transaction in explorer -->
+        <column xsi:type="boolean" name="is_block_explorer_check" nullable="true" comment="Is Block Explorer Check"/>
+
+        <column xsi:type="varchar" name="block_explorer_api_url" nullable="true" comment="Block Explorer Api Url"/>
+        <column xsi:type="varchar" name="block_explorer_api_key" nullable="true" comment="Block Explorer Api Key"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+    <table name="crypto_blockchain_currency_address" resource="default" engine="innodb" comment="Curreny Blockchain Address">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"
+                comment="Entity Id"/>
+        <column xsi:type="int" name="blockchain_network_id" nullable="false" comment="Network Id"/>
+        <column xsi:type="int" name="currency_id" nullable="false" comment="Currency Id"/>
+        <column xsi:type="varchar" name="token_address" length="255" nullable="false" comment="Currency Token Address (if token)"/>
+        <column xsi:type="varchar" name="merchant_address" length="255" nullable="false" comment="Merchant Address"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <constraint xsi:type="unique" referenceId="BLOCKCHAIN_CURRENCY_UNIQUE_INDEX">
+            <column name="blockchain_network_id"/>
+            <column name="currency_id"/>
+        </constraint>
+    </table>
+
+    <table name="crypto_custom_currency" resource="default" engine="innodb" comment="Custom Currency Table">
+        <column xsi:type="boolean" name="is_crypto" nullable="false" comment="Is Crypto Currency"/>
+        <column xsi:type="boolean" name="is_token" nullable="false" comment="Is Token"/>
+        <column xsi:type="varchar" name="crypto_code" length="255" nullable="false" comment="Crypto Code"/>
+        <column xsi:type="text" name="contract_abi" comment="Token Contract ABI"/>
+    </table>
+</schema>
