@@ -4,10 +4,9 @@ Extension allows adding any crypto currency and blockchain data to Magento 2.
 
 ## Table of contents
 
-* [Description](#description)
 * [Features](#features)
 * [Installation](#installation)
-* [Add New Currency](#add-new-currency)
+* [Configuration](#configuration)
 * [Author](#author)
 * [License](#license)
 
@@ -40,8 +39,7 @@ php bin/magento setup:upgrade
   - `Is Token` - set if it is token (`yes` - it will use ERC20 methods to send payment, `no` - it will use just blockchain transactions)
   - `Currency Contract ABI` - input ABI of token contract if it is ERC20
 
-**FIRST SCREEN**
-
+![Magento 2 Crypto Currency](https://raw.githubusercontent.com/torys877/magento-crypto-currency/main/docs/Selection_002.png)
 
 ### Add Blockchain Network
 - Go to `Stores->Crypto->Blockchain Networks`
@@ -55,7 +53,7 @@ php bin/magento setup:upgrade
   - `Blockchain Explorer API Url` - api url in explorer
   - `Blockchain Explorer API Key` - your explorer api key
 
-**SCREEN 2**
+![Magento 2 Crypto Currency](https://raw.githubusercontent.com/torys877/magento-crypto-currency/main/docs/Selection_003.png)
 
 ### Add Crypto Currency Addresses
 - Go to `Stores->Crypto->Currency Addresses`
@@ -66,8 +64,7 @@ php bin/magento setup:upgrade
     - `Merchant Address In Blockchain` - fill with YOUR wallet address where you are going to receive payments
     - `Currency Token Address In Blockchain` - fill with crypto currency ERC20 address (if it is token, or leave empty if it is native currency)
 
-**SCREEN 3**
-
+![Magento 2 Crypto Currency](https://raw.githubusercontent.com/torys877/magento-crypto-currency/main/docs/Selection_004.png)
 
 ## Author
 

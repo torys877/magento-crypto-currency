@@ -1,6 +1,6 @@
 {
     "name": "cryptom2/magento-crypto-currency",
-    "description": "Custom Currency for Magento 2",
+    "description": "Crypto Currency for Magento 2",
     "type": "magento2-module",
     "version": "1.0.0",
     "license": "MIT",
